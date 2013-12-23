@@ -37,25 +37,74 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package org.glassfish.javaee.mobile.server.todo;
+package org.glassfish.javaee.javascript.backend.chat;
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import java.io.StringReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.websocket.Decoder;
+import javax.websocket.Encoder;
+import javax.websocket.EndpointConfig;
 
-@ApplicationPath("resources")
-public class RestConfiguration extends Application {
+public class ChatMessage
+        implements Decoder.Text<ChatMessage>, Encoder.Text<ChatMessage> {
+
+    @NotNull
+    @Size(min = 1, max = 42,
+            message = "User must be between 1 and 42 characters")
+    private String user;
+    @NotNull
+    @Size(min = 1, max = 255,
+            message = "Message must be between 1 and 255 characters")
+    private String message;
 
     @Override
-    public Set<Class<?>> getClasses() {
-        Set<Class<?>> resources = new HashSet<>();
-        addRestResourceClasses(resources);
-        return resources;
+    public void init(EndpointConfig config) {
+        // Nothing to do.
     }
 
-    private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(org.glassfish.javaee.mobile.server.todo.JsonMoxyConfigurationContextResolver.class);
-        resources.add(org.glassfish.javaee.mobile.server.todo.ToDoResource.class);
+    @Override
+    public ChatMessage decode(String value) {
+        try (JsonReader jsonReader = Json.createReader(
+                new StringReader(value))) {
+            JsonObject jsonObject = jsonReader.readObject();
+            user = jsonObject.getString("user");
+            message = jsonObject.getString("message");
+        }
+
+        return this;
+    }
+
+    @Override
+    public boolean willDecode(String string) {
+        return true; // Detect if it's a valid format.
+    }
+
+    @Override
+    public String encode(ChatMessage chatMessage) {
+        JsonObject jsonObject = Json.createObjectBuilder()
+                .add("user", chatMessage.user)
+                .add("message", chatMessage.message)
+                .add("timestamp",
+                        new SimpleDateFormat("MM/dd/yyyy h:mm:ss a z")
+                        .format(new Date()))
+                .build();
+
+        return jsonObject.toString();
+    }
+
+    @Override
+    public void destroy() {
+        // Nothing to do.
+    }
+
+    @Override
+    public String toString() {
+        return "ChatMessage{" + "user=" + user + ", message=" + message + '}';
     }
 }

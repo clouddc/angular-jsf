@@ -37,17 +37,19 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package org.glassfish.javaee.mobile.server.todo;
+package org.glassfish.javaee.javascript.backend.todo;
 
 import java.util.List;
 
-public interface ToDoService {
+public interface ToDoItemRepository {
 
-    Long addToDoItem(String username, ToDoItem item);
+    Long create(ToDoItem item);
 
-    List<ToDoItem> findToDoItemsByUsername(String username);
+    void delete(ToDoItem item);
 
-    void removeToDoItem(String username, Long id);
+    ToDoItem find(Long id);
 
-    void updateToDoItem(String username, ToDoItem item);
+    List<ToDoItem> findByUsername(String username);
+
+    void update(ToDoItem item);
 }

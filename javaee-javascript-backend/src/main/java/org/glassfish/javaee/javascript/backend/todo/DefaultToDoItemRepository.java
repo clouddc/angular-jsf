@@ -37,58 +37,44 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package org.glassfish.javaee.mobile.server.todo;
+package org.glassfish.javaee.javascript.backend.todo;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
+public class DefaultToDoItemRepository implements ToDoItemRepository {
 
-@Stateless
-public class DefaultToDoService implements ToDoService {
-
-    /**
-     * Logger
-     */
-    private static final Logger logger = Logger
-            .getLogger(DefaultToDoService.class.getName());
-
-    @Inject
-    private ToDoItemRepository repository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
-    public Long addToDoItem(String username, ToDoItem item) {
-        item.setUsername(username);
+    public Long create(ToDoItem item) {
+        entityManager.persist(item);
 
-        logger.log(Level.INFO, "Adding item: {0}", item);
-
-        return repository.create(item);
+        return item.getId();
     }
 
     @Override
-    public void updateToDoItem(String username, ToDoItem item) {
-        item.setUsername(username);
-
-        logger.log(Level.INFO, "Updating item: {0}", item);
-
-        repository.update(item);
+    public ToDoItem find(Long id) {
+        return entityManager.find(ToDoItem.class, id);
     }
 
     @Override
-    public void removeToDoItem(String username, Long id) {
-        ToDoItem item = repository.find(id);
-
-        logger.log(Level.INFO, "Removing item: {0}", item);
-
-        repository.delete(item);
+    public List<ToDoItem> findByUsername(String username) {
+        return entityManager.createNamedQuery(
+                "ToDoItem.findByUsername",
+                ToDoItem.class)
+                .setParameter("username", username).getResultList();
     }
 
     @Override
-    public List<ToDoItem> findToDoItemsByUsername(String username) {
-        logger.log(Level.INFO, "Getting all items for: {0}", username);
+    public void update(ToDoItem item) {
+        entityManager.merge(item);
+    }
 
-        return repository.findByUsername(username);
+    @Override
+    public void delete(ToDoItem item) {
+        entityManager.remove(item);
     }
 }

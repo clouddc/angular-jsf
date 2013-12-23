@@ -37,74 +37,27 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package org.glassfish.javaee.mobile.server.chat;
+package org.glassfish.javaee.javascript.backend.todo;
 
-import java.io.StringReader;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.websocket.Decoder;
-import javax.websocket.Encoder;
-import javax.websocket.EndpointConfig;
+import java.util.HashMap;
+import java.util.Map;
+import javax.ws.rs.ext.ContextResolver;
+import javax.ws.rs.ext.Provider;
+import org.glassfish.jersey.moxy.json.MoxyJsonConfig;
 
-public class ChatMessage
-        implements Decoder.Text<ChatMessage>, Encoder.Text<ChatMessage> {
-
-    @NotNull
-    @Size(min = 1, max = 42,
-            message = "User must be between 1 and 42 characters")
-    private String user;
-    @NotNull
-    @Size(min = 1, max = 255,
-            message = "Message must be between 1 and 255 characters")
-    private String message;
+@Provider
+public class JsonMoxyConfigurationContextResolver
+        implements ContextResolver<MoxyJsonConfig> {
 
     @Override
-    public void init(EndpointConfig config) {
-        // Nothing to do.
-    }
+    public MoxyJsonConfig getContext(Class<?> objectType) {
+        MoxyJsonConfig configuration = new MoxyJsonConfig();
 
-    @Override
-    public ChatMessage decode(String value) {
-        try (JsonReader jsonReader = Json.createReader(
-                new StringReader(value))) {
-            JsonObject jsonObject = jsonReader.readObject();
-            user = jsonObject.getString("user");
-            message = jsonObject.getString("message");
-        }
+        Map<String, String> namespacePrefixMapper = new HashMap<>(1);
+        namespacePrefixMapper.put("http://www.w3.org/2001/XMLSchema-instance", "xsi");
+        configuration.setNamespacePrefixMapper(namespacePrefixMapper);
+        configuration.setNamespaceSeparator(':');
 
-        return this;
-    }
-
-    @Override
-    public boolean willDecode(String string) {
-        return true; // Detect if it's a valid format.
-    }
-
-    @Override
-    public String encode(ChatMessage chatMessage) {
-        JsonObject jsonObject = Json.createObjectBuilder()
-                .add("user", chatMessage.user)
-                .add("message", chatMessage.message)
-                .add("timestamp",
-                        new SimpleDateFormat("MM/dd/yyyy h:mm:ss a z")
-                        .format(new Date()))
-                .build();
-
-        return jsonObject.toString();
-    }
-
-    @Override
-    public void destroy() {
-        // Nothing to do.
-    }
-
-    @Override
-    public String toString() {
-        return "ChatMessage{" + "user=" + user + ", message=" + message + '}';
+        return configuration;
     }
 }

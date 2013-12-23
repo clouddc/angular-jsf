@@ -37,27 +37,25 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package org.glassfish.javaee.mobile.server.todo;
+package org.glassfish.javaee.javascript.backend.todo;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.ws.rs.ext.ContextResolver;
-import javax.ws.rs.ext.Provider;
-import org.glassfish.jersey.moxy.json.MoxyJsonConfig;
+import java.util.HashSet;
+import java.util.Set;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
-@Provider
-public class JsonMoxyConfigurationContextResolver
-        implements ContextResolver<MoxyJsonConfig> {
+@ApplicationPath("resources")
+public class RestConfiguration extends Application {
 
     @Override
-    public MoxyJsonConfig getContext(Class<?> objectType) {
-        MoxyJsonConfig configuration = new MoxyJsonConfig();
+    public Set<Class<?>> getClasses() {
+        Set<Class<?>> resources = new HashSet<>();
+        addRestResourceClasses(resources);
+        return resources;
+    }
 
-        Map<String, String> namespacePrefixMapper = new HashMap<>(1);
-        namespacePrefixMapper.put("http://www.w3.org/2001/XMLSchema-instance", "xsi");
-        configuration.setNamespacePrefixMapper(namespacePrefixMapper);
-        configuration.setNamespaceSeparator(':');
-
-        return configuration;
+    private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(org.glassfish.javaee.javascript.backend.todo.JsonMoxyConfigurationContextResolver.class);
+        resources.add(org.glassfish.javaee.javascript.backend.todo.ToDoResource.class);
     }
 }

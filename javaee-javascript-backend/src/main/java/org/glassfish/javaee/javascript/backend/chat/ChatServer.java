@@ -37,7 +37,7 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-package org.glassfish.javaee.mobile.server.chat;
+package org.glassfish.javaee.javascript.backend.chat;
 
 import java.io.IOException;
 import java.util.HashSet;
