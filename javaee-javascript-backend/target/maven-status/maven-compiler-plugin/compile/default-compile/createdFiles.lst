@@ -1,0 +1,10 @@
+org\glassfish\javaee\mobile\server\todo\ToDoResource.class
+org\glassfish\javaee\mobile\server\todo\DefaultToDoItemRepository.class
+org\glassfish\javaee\mobile\server\todo\JsonMoxyConfigurationContextResolver.class
+org\glassfish\javaee\mobile\server\todo\ToDoItem.class
+org\glassfish\javaee\mobile\server\todo\ToDoService.class
+org\glassfish\javaee\mobile\server\chat\ChatMessage.class
+org\glassfish\javaee\mobile\server\todo\ToDoItemRepository.class
+org\glassfish\javaee\mobile\server\todo\RestConfiguration.class
+org\glassfish\javaee\mobile\server\todo\DefaultToDoService.class
+org\glassfish\javaee\mobile\server\chat\ChatServer.class
