@@ -84,11 +84,9 @@
         user following this format:
     <pre>
         [{"id": "to do item ID",
-         "title": "item 1 title",
          "description": "item 1 description",
          "completed": "true|false"},
          {"id": "to do item ID",
-         "title": "item 1 title",
          "description": "item 2 description",
          "completed": "true|false"}
          ...]
@@ -98,8 +96,7 @@
         https://localhost:8181/javaee-mobile-server/resources/todo/{username}</a>.
     The POST body must follow this format:
     <pre>
-        {"title": "item title",
-         "description": "item description"}
+        {"description": "item description"}
     </pre>
     An ID will be automatically assigned and the item will be assumed to be
     incomplete. The POST response will return the ID assigned to the item as plain text (not JSON).
@@ -109,7 +106,6 @@
     The PUT request body must follow this format:
     <pre>
         {"id": "to do item ID",
-         "title": "item title",
          "description": "item description",
          "completed": "true|false"}
     </pre>
