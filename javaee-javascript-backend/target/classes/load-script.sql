@@ -1,6 +1,0 @@
-INSERT INTO javascript_users (username, password) VALUES ('angular', '5b11618c2e44027877d0cd0921ed166b9f176f50587fc91e7534dd2946db77d6')
-INSERT INTO javascript_users (username, password) VALUES ('backbone', '5b11618c2e44027877d0cd0921ed166b9f176f50587fc91e7534dd2946db77d6')
-INSERT INTO javascript_users (username, password) VALUES ('avatar', '5b11618c2e44027877d0cd0921ed166b9f176f50587fc91e7534dd2946db77d6')
-INSERT INTO javascript_groups (username, group_name) VALUES ('angular', 'javascript')
-INSERT INTO javascript_groups (username, group_name) VALUES ('backbone', 'javascript')
-INSERT INTO javascript_groups (username, group_name) VALUES ('avatar', 'javascript')
