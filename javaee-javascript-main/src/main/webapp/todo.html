@@ -40,7 +40,7 @@
  * holder.
  */
 -->
-<html lang="en" ng-app>
+<html lang="en" ng-app="todoApplication">
     <head>
         <title>To Do Items</title>
         <meta charset="UTF-8">
@@ -48,8 +48,63 @@
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="css/bootstrap.css">
         <script src="lib/angular/angular.js"></script>
+        <script src="javascript/controllers.js"></script>
     </head>
-    <body>
-        <div>Nothing here {{'yet' + '!'}}</div>
+    <body ng-controller="ToDoController">
+        <div id="todo-panel">
+            <label class="todo-label" for="add-todo-item">{{'Reza'}}'s To Do List</label>
+            <input type="text" id="add-todo-item" class="todo-input"
+                   placeholder="Buy milk">
+            <ul id="todo-list">
+                <li ng-repeat="item in items">
+                    <div class="todo-item-view">
+                        <input type="checkbox" class="todo-item-checkbox" checked>
+                        <span class="todo-item-description" tabindex="0">{{'Do laundry'}}</span>
+                    </div>
+                    <div class="todo-item-edit">
+                        <input type="text" class="todo-item-input" value="{{'Do laundry'}}">
+                    </div>
+                    <a href="#" class="todo-item-remove" title="Remove this item">
+                        <span class="todo-item-remove-icon"></span>
+                    </a>
+                </li>
+                <li>
+                    <div class="todo-item-view">
+                        <input type="checkbox" class="todo-item-checkbox" checked>
+                        <span class="todo-item-description" tabindex="0">{{'Cook dinner'}}</span>
+                    </div>
+                    <div class="todo-item-edit">
+                        <input type="text" class="todo-item-input" value="{{'Cook dinner'}}">
+                    </div>
+                    <a href="#" class="todo-item-remove" title="Remove this item">
+                        <span class="todo-item-remove-icon"></span>
+                    </a>
+                </li>
+                <li>
+                    <div class="todo-item-view">
+                        <input type="checkbox" class="todo-item-checkbox" checked>
+                        <span class="todo-item-description" tabindex="0">{{'Take out trash'}}</span>
+                    </div>
+                    <div class="todo-item-edit">
+                        <input type="text" class="todo-item-input" value="{{'Take out trash'}}">
+                    </div>
+                    <a href="#" class="todo-item-remove" title="Remove this item">
+                        <span class="todo-item-remove-icon"></span>
+                    </a>
+                </li>
+                <li>
+                    <div class="todo-item-view">
+                        <input type="checkbox" class="todo-item-checkbox" checked>
+                        <span class="todo-item-description" tabindex="0">{{'Mow lawn'}}</span>
+                    </div>
+                    <div class="todo-item-edit">
+                        <input type="text" class="todo-item-input" value="{{'Mow lawn'}}">
+                    </div>
+                    <a href="#" class="todo-item-remove" title="Remove this item">
+                        <span class="todo-item-remove-icon"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </body>
 </html>
