@@ -16,14 +16,15 @@
         <div id="todo-panel">
             <label class="todo-label" for="add-todo">{{'Reza'}}'s To Do List</label>
             <input type="text" id="add-todo" class="add-todo-item-textbox"
-                   placeholder="Buy milk" ng-keypress="addTodoItem($event)">
+                   placeholder="Buy milk" ng-keypress="addTodoItem($event)" 
+                   autofocus>
             <ul id="todo-list">
                 <li ng-repeat="item in items" 
                     ng-mouseover="activateItemEdit($event)" 
                     ng-mouseleave="deactivateItemEdit($event)">
                     <div class="todo-item-view-panel">
                         <input type="checkbox" class="todo-item-checkbox" 
-                               checked ng-click="todoItemDone(item.id)">
+                               ng-model="item.completed">
                         <span class="todo-item-description">{{item.description}}</span>
                     </div>
                     <div class="todo-item-edit-panel">
@@ -31,7 +32,8 @@
                                value="{{item.description}}">
                     </div>
                     <a href="#" class="todo-item-remove-button"
-                       title="Remove this item">
+                       title="Remove this item" 
+                       ng-click="removeToDoItem(item.id)">
                         <span class="todo-item-remove-icon"></span>
                     </a>
                 </li>

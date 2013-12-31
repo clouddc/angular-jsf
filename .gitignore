@@ -7,4 +7,4 @@
 .classpath
 .project
 .settings
-/javaee-javascript-main/target/
+**/target
