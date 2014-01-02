@@ -1,4 +1,4 @@
 'use strict';
 
 var todoApplication = angular.module('todoApplication', 
-    ['todoControllers', 'todoServices']);
+    ['todoControllers', 'todoServices', 'todoDirectives']);

@@ -6,38 +6,50 @@
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/application.css">
         <link rel="stylesheet" href="css/bootstrap.css">
-        <script src="lib/angular/angular.js"></script>
-        <script src="lib/angular/angular-resource.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js"></script>
         <script src="javascript/controllers.js"></script>
         <script src="javascript/services.js"></script>
+        <script src="javascript/directives.js"></script>
         <script src="javascript/application.js"></script>
     </head>
     <body ng-controller="ToDoController">
-        <div id="todo-panel">
-            <label class="todo-label" for="add-todo">{{'Reza'}}'s To Do List</label>
-            <input type="text" id="add-todo" class="add-todo-item-textbox"
-                   placeholder="Buy milk" ng-keypress="addTodoItem($event)" 
-                   autofocus>
-            <ul id="todo-list">
-                <li ng-repeat="item in items" 
-                    ng-mouseover="activateItemEdit($event)" 
-                    ng-mouseleave="deactivateItemEdit($event)">
-                    <div class="todo-item-view-panel">
-                        <input type="checkbox" class="todo-item-checkbox" 
-                               ng-model="item.completed">
-                        <span class="todo-item-description">{{item.description}}</span>
-                    </div>
-                    <div class="todo-item-edit-panel">
-                        <input type="text" class="todo-item-edit-textbox"
-                               value="{{item.description}}">
-                    </div>
-                    <a href="#" class="todo-item-remove-button"
-                       title="Remove this item" 
-                       ng-click="removeToDoItem(item.id)">
-                        <span class="todo-item-remove-icon"></span>
-                    </a>
-                </li>
-            </ul>
+        <div class="center">
+            <div id="todo-panel">
+                <label class="todo-label" for="add-todo">{{'Reza'}}'s To Do List</label>
+                <form ng-submit="addItem()">
+                    <input id="add-todo" class="textbox"
+                           placeholder="Buy milk" ng-model="newToDoDescription"
+                           autofocus required>
+                </form>
+                <div ng-show="items.length">
+                    <ul id="todo-list">
+                        <li ng-repeat="item in items">
+                            <div ng-class="{hidden: item == itemToEdit}">
+                                <input type="checkbox" ng-model="item.completed">
+                                <span ng-class="{completed: item.completed}" ng-dblclick="editItem(item)">{{item.description}}</span>
+                                <a class="todo-item-remove-button"
+                                   title="Remove this item"
+                                   ng-click="removeItem(item)">
+                                    <span class="todo-item-remove-icon"></span>
+                                </a>
+                            </div>
+                            <div ng-class="{hidden: item != itemToEdit}">
+                                <form ng-submit="commitEditItem(item)">
+                                    <input type="text" class="textbox"
+                                           ng-model="item.description"
+                                           ng-blur="commitEditItem(item)"
+                                           on-escape="revertEditing(item)"
+                                           focus-when="item == itemToEdit"
+                                           required>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                    <span class="item-count-label">
+                        <strong>{{items.length}}</strong> <ng-pluralize count="items.length" when="{ one: 'item', other: 'items' }"></ng-pluralize> on your list
+                    </span>
+                </div>
+            </div>
         </div>
-    </body>
 </html>

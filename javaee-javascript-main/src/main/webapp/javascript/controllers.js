@@ -4,16 +4,35 @@ var todoControllers = angular.module('todoControllers', []);
 
 todoControllers.controller('ToDoController', ['$scope', 'ToDo',
     function($scope, ToDo) {
-        $scope.items = ToDo.query();
-        $scope.addToDoItem = function(event) {
-            if (event.keyCode === 13) { // enter key
-                
-            }
+        $scope.newToDoDescription = '';
+        $scope.itemToEdit = null;
+
+        $scope.items = [
+            {id: 1, description: 'Take out trash', completed: false},
+            {id: 2, description: 'Do laundry', completed: true}
+        ];
+
+        // $scope.items = ToDo.query();
+        $scope.addItem = function() {
+            alert("Adding item: " + $scope.newToDoDescription);
+            $scope.newToDoDescription = '';
         };
-        $scope.activateItemEdit = function(event) {
-            alert(event + '!!! first function call!');
+
+        $scope.editItem = function(item) {
+            $scope.itemToEdit = item;
+            $scope.itemBackup = angular.extend({}, item);
         };
-        $scope.deactivateItemEdit = function(event) {
-            alert(event + '!!! first function call!');
+
+        $scope.commitEditItem = function(item) {
+            $scope.itemToEdit = null;
+        };
+
+        $scope.revertEditing = function(item) {
+            $scope.items[$scope.items.indexOf(item)] = $scope.itemBackup;
+            $scope.itemToEdit = null; // Call commit instead?
+        };
+
+        $scope.removeItem = function(item) {
+            alert("Removing item: " + item);
         };
     }]);

@@ -1,7 +1,22 @@
-#todo-panel {
-    border: solid #cfcfcf;
-    margin: 1em;
+li {
+     border-bottom: 1px dotted #cfcfcf;
+     font-size: 20px;
+     padding: 6px;
+     position: relative;
+}
+
+.center {
+    margin-top: 20px;
     text-align: center;
+    width: 100%;
+}
+
+#todo-panel {
+    border: 1px solid #cfcfcf;
+    margin: auto;
+    text-align: center;
+    width: 475px;
+    padding: 20px;
 }
 
 .todo-label {
@@ -9,6 +24,7 @@
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+    margin-bottom: 15px;
 }
 
 #todo-list {
@@ -19,16 +35,14 @@
     padding: 0;
 }
 
-.todo-item-done .todo-item-description {
+.completed {
     color: #666;
     text-decoration: line-through;
 }
 
-.todo-item-edit-panel, .todo-item-view-panel .editing { display: none; }
+.hidden { display: none; }
 
-.todo-item-edit-panel .editing { display: block; }
-
-.todo-item-edit-textbox {
+.textbox {
     display: block;
     font-family: Helvetica, sans-serif;
     font-size: 20px;
@@ -36,13 +50,6 @@
     margin: 5px auto 0;
     padding: 6px;
     width: 420px;
-}
-
-.todo-item-separator { // Correct name?
-    border-bottom: 1px dotted #cfcfcf;
-    font-size: 20px;
-    padding: 6px;
-    position: relative;
 }
 
 .todo-item-remove-button {
@@ -56,17 +63,24 @@
     Delete icon courtesy of The Noun Project:
     http://thenounproject.com/noun/delete/
     */
-    background: url(images/remove.png) no-repeat;
+    background: url(../images/remove.png) no-repeat;
     display: block;
     height: 16px;
-    opacity: 0.6;
-    visibility: hidden;
+    opacity: 0.5;
     width: 23px;
+    visibility: hidden;
 }
 
-.todo-item-remove-button:hover .todo-item-remove-icon { opacity: 1.0; }
+li:hover .todo-item-remove-icon { visibility: visible; }
+li .todo-item-remove-icon:hover { opacity: 1.0 }
 
-.todo-hover .todo-item-remove-icon, // What is todo-hover?
-.todo-item-remove-button:focus .todo-item-remove-icon { visibility: visible; }
+.item-count-label {
+    display: block;
+    text-align: left;
+    color: #666;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 5px auto 0;
+    padding: 6px;
+}
 
-.todo-item-remove-icon .editing { visibility: hidden; }
