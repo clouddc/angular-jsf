@@ -63,7 +63,7 @@ li {
     Delete icon courtesy of The Noun Project:
     http://thenounproject.com/noun/delete/
     */
-    background: url(../images/remove.png) no-repeat;
+    background: url(../../images/remove.png) no-repeat;
     display: block;
     height: 16px;
     opacity: 0.5;

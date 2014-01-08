@@ -4,7 +4,7 @@
         <title>Chat</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/chat/application.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js"></script>
@@ -15,7 +15,7 @@
     </head>
     <body ng-controller="ChatController">
         <div id="chat-panel">
-            <label class="chat-label">Welcome to the Chat, {{'Reza'}}</label>
+            <label class="chat-label">Welcome to the Chat, ${pageContext.request.userPrincipal.name}</label>
             <div class="chat-box">
                 <table class="message-list">
                     <tr class="mesage-panel" ng-repeat="message in messages">

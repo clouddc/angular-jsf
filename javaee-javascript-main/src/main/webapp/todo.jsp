@@ -4,7 +4,7 @@
         <title>To Do Items</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/todo/application.css">        
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js"></script>
@@ -16,7 +16,7 @@
     <body ng-controller="ToDoController">
         <div class="center">
             <div id="todo-panel">
-                <label class="todo-label" for="add-todo">{{'Reza'}}'s To Do List</label>
+                <label class="todo-label" for="add-todo">${pageContext.request.userPrincipal.name}'s To Do List</label>
                 <form ng-submit="addItem()">
                     <input id="add-todo" class="textbox"
                            placeholder="Buy milk" ng-model="newToDoDescription"
