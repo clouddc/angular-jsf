@@ -24,11 +24,9 @@
         <auth-constraint>
             <role-name>javascript</role-name>
         </auth-constraint>
-        <!--
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
-        -->
     </security-constraint>
     <deny-uncovered-http-methods/>
     <login-config>
