@@ -4,17 +4,17 @@ var todoControllers = angular.module('todoControllers', []);
 
 todoControllers.controller('ToDoController', ['$scope', 'ToDo',
     function($scope, ToDo) {
+        $scope.user = principal;
         $scope.newToDoDescription = '';
         $scope.itemToEdit = null;
 
-        $scope.items = [
-            {id: 1, description: 'Take out trash', completed: false},
-            {id: 2, description: 'Do laundry', completed: true}
-        ];
+        $scope.items = ToDo.query();
 
-        // $scope.items = ToDo.query();
         $scope.addItem = function() {
-            alert("Adding item: " + $scope.newToDoDescription);
+            var item = new ToDo({description: $scope.newToDoDescription});
+            item.$save(function(data) {
+                $scope.items.push(data);
+            });
             $scope.newToDoDescription = '';
         };
 
@@ -24,6 +24,7 @@ todoControllers.controller('ToDoController', ['$scope', 'ToDo',
         };
 
         $scope.commitEditItem = function(item) {
+            ToDo.update(item);
             $scope.itemToEdit = null;
         };
 
@@ -33,6 +34,8 @@ todoControllers.controller('ToDoController', ['$scope', 'ToDo',
         };
 
         $scope.removeItem = function(item) {
-            alert("Removing item: " + item);
+            item.$remove(function() {
+                $scope.items.splice($scope.items.indexOf(item), 1);
+            });
         };
     }]);

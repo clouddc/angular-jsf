@@ -67,13 +67,13 @@ public class ToDoResource implements Serializable {
 
     @POST
     @Consumes({"application/json"})
-    @Produces({"text/plain"})
-    public String create(
+    @Produces({"application/json"})
+    public ToDoItem create(
             @PathParam("username")
             @NotNull
-            @Size(min = 6, max = 14) String username,
+            @Size(min = 4, max = 14) String username,
             @Valid ToDoItem item) {
-        return service.addToDoItem(username, item).toString();
+        return service.addToDoItem(username, item);
     }
 
     @PUT
@@ -82,7 +82,7 @@ public class ToDoResource implements Serializable {
     public void edit(
             @PathParam("username")
             @NotNull
-            @Size(min = 6, max = 14) String username,
+            @Size(min = 4, max = 14) String username,
             @PathParam("id") Long id,
             @Valid ToDoItem item) {
         item.setId(id);
@@ -94,7 +94,7 @@ public class ToDoResource implements Serializable {
     public void remove(
             @PathParam("username")
             @NotNull
-            @Size(min = 6, max = 14) String username,
+            @Size(min = 4, max = 14) String username,
             @PathParam("id") Long id) {
         service.removeToDoItem(username, id);
     }
@@ -104,7 +104,7 @@ public class ToDoResource implements Serializable {
     public List<ToDoItem> getAll(
             @PathParam("username")
             @NotNull
-            @Size(min = 6, max = 14) String username) {
+            @Size(min = 4, max = 14) String username) {
         return service.findToDoItemsByUsername(username);
     }
 }

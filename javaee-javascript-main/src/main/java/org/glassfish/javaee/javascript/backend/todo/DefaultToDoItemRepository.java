@@ -49,10 +49,10 @@ public class DefaultToDoItemRepository implements ToDoItemRepository {
     private EntityManager entityManager;
 
     @Override
-    public Long create(ToDoItem item) {
+    public ToDoItem create(ToDoItem item) {
         entityManager.persist(item);
 
-        return item.getId();
+        return item;
     }
 
     @Override

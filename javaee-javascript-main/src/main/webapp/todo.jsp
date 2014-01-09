@@ -5,9 +5,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/todo/application.css">        
+        <link rel="stylesheet" href="css/todo/application.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js"></script>
+        <script type="text/javascript">
+            var principal = '${pageContext.request.userPrincipal.name}';
+        </script>
         <script src="javascript/todo/controllers.js"></script>
         <script src="javascript/todo/services.js"></script>
         <script src="javascript/todo/directives.js"></script>
@@ -16,7 +19,7 @@
     <body ng-controller="ToDoController">
         <div class="center">
             <div id="todo-panel">
-                <label class="todo-label" for="add-todo">${pageContext.request.userPrincipal.name}'s To Do List</label>
+                <label class="todo-label" for="add-todo">{{user}}'s To Do List</label>
                 <form ng-submit="addItem()">
                     <input id="add-todo" class="textbox"
                            placeholder="Buy milk" ng-model="newToDoDescription"
@@ -26,7 +29,7 @@
                     <ul id="todo-list">
                         <li ng-repeat="item in items">
                             <div ng-class="{hidden: item == itemToEdit}">
-                                <input type="checkbox" ng-model="item.completed">
+                                <input type="checkbox" ng-model="item.completed" ng-change="commitEditItem(item)">
                                 <span ng-class="{completed: item.completed}" ng-dblclick="editItem(item)">{{item.description}}</span>
                                 <a class="todo-item-remove-button"
                                    title="Remove this item"

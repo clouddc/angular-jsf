@@ -59,7 +59,7 @@ public class DefaultToDoService implements ToDoService {
     private ToDoItemRepository repository;
 
     @Override
-    public Long addToDoItem(String username, ToDoItem item) {
+    public ToDoItem addToDoItem(String username, ToDoItem item) {
         item.setUsername(username);
 
         logger.log(Level.INFO, "Adding item: {0}", item);

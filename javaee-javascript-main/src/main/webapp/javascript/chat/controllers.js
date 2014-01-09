@@ -4,6 +4,8 @@ var chatControllers = angular.module('chatControllers', []);
 
 chatControllers.controller('ChatController', ['$scope', 'ToDo',
     function($scope, ToDo) {
+        $scope.user = principal;
+
         $scope.newMessage = '';
 
         $scope.messages = [

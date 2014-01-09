@@ -66,7 +66,7 @@ public class ToDoItem implements Serializable {
     private String username;
 
     @NotNull
-    @Size(min = 1, max = 110)
+    @Size(min = 5, max = 110)
     private String description;
 
     private boolean completed;
