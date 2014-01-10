@@ -6,20 +6,19 @@
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/chat/application.css">
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-resource.min.js"></script>
         <script type="text/javascript">
             var principal = '${pageContext.request.userPrincipal.name}';
         </script>
         <script src="javascript/chat/controllers.js"></script>
-        <script src="javascript/chat/services.js"></script>
         <script src="javascript/chat/directives.js"></script>
         <script src="javascript/chat/application.js"></script>
     </head>
     <body ng-controller="ChatController">
         <div id="chat-panel">
             <label class="chat-label">Welcome to the Chat, {{user}}</label>
-            <div class="chat-box">
+            <div class="chat-box" auto-scroll="messages.length">
                 <table class="message-list">
                     <tr class="mesage-panel" ng-repeat="message in messages">
                         <td class="timestamp-column">{{message.timestamp}}</td>

@@ -1,4 +1,4 @@
 'use strict';
 
-var chatApplication = angular.module('chatApplication', 
-    ['chatControllers', 'todoServices', 'todoDirectives']);
+var chatApplication = angular.module('chatApplication', ['chatControllers',
+    'chatDirectives']);

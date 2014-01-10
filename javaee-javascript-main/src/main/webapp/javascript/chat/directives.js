@@ -1,32 +1,16 @@
 'use strict';
-
-var todoDirectives = angular.module('todoDirectives', []);
-
+var chatDirectives = angular.module('chatDirectives', []);
 /**
- * Applies the expression passed in via the attribute when the escape key is pressed
+ * Scrolls the element to the bottom when the expression passed in via the
+ * attribute becomes true
  */
-todoDirectives.directive('onEscape', function() {
-    var ESCAPE_KEY = 27;
+chatDirectives.directive('autoScroll', function($timeout) {
     return function(scope, element, attributes) {
-        element.bind('keydown', function(event) {
-            if (event.keyCode === ESCAPE_KEY) {
-                scope.$apply(attributes.onEscape);
-            }
-        });
-    };
-});
-
-/**
- * Gets focus to the element when the expression passed in via the attribute becomes true
- */
-todoDirectives.directive('focusWhen', function($timeout) {
-    return function(scope, element, attributes) {
-        scope.$watch(attributes.focusWhen, function(watchedValue) {
-            if (watchedValue) {
-                $timeout(function() {
-                    element[0].focus();
-                }, 0, false);
-            }
+        scope.$watch(attributes.autoScroll, function() {
+            $timeout(function() {
+                jQuery(element[0]).animate(
+                        {scrollTop: jQuery(element[0]).prop("scrollHeight")}, 1000);
+            }, 0, false);
         });
     };
 });
