@@ -1,5 +1,6 @@
 'use strict';
 var chatDirectives = angular.module('chatDirectives', []);
+
 /**
  * Scrolls the element to the bottom when the expression passed in via the
  * attribute becomes true

@@ -12,6 +12,7 @@
             var principal = '${pageContext.request.userPrincipal.name}';
         </script>
         <script src="javascript/chat/controllers.js"></script>
+        <script src="javascript/chat/services.js"></script>
         <script src="javascript/chat/directives.js"></script>
         <script src="javascript/chat/application.js"></script>
     </head>
