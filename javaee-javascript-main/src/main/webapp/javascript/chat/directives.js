@@ -9,8 +9,8 @@ chatDirectives.directive('autoScroll', function($timeout) {
     return function(scope, element, attributes) {
         scope.$watch(attributes.autoScroll, function() {
             $timeout(function() {
-                jQuery(element[0]).animate(
-                        {scrollTop: jQuery(element[0]).prop("scrollHeight")}, 1000);
+                jQuery(element).animate(
+                        {scrollTop: jQuery(element).prop("scrollHeight")}, 'slow');
             }, 0, false);
         });
     };
