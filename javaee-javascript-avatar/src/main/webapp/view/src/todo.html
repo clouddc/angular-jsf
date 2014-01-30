@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<!--
+
+    License Information : https://java.net/projects/avatar/sources/git/content/legal/header.txt
+
+-->
+
+        <title>Hello Math: Subtraction</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    </head>
+    <body>
+        <script data-model="local" data-instance="sub">
+            var SubMathModel = function() {
+                this.left = 0;
+                this.right = 0;
+                this.reset = function() {
+                    this.left = this.right = 0;
+                };
+            };
+        </script>
+        <table>
+            <tr>
+                <td width="40%">
+                    <img src="./img/subtraction.gif"/>
+                </td>
+                <td>
+                    <label for="lfs">Operand 1: </label>
+                    <input id="lfs" type="text" data-value="#{sub.left}"/><br>
+                    <label for="rts">Operand 2: </label>
+                    <input id="rts" type="text" data-value="#{sub.right}"/><br>
+                    <span id="output2">The result is #{sub.left} - #{sub.right} = #{sub.left - sub.right}</span>
+                    <button onclick="#{sub.reset()}">Reset</button>
+                    <button onclick="avatar.navigateTo('#addition')" id="prev">Prev</button>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

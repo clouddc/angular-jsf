@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<!--
+
+    License Information : https://java.net/projects/avatar/sources/git/content/legal/header.txt
+
+-->
+
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Chat WebSocket Sample</title>
+    </head>
+    <body>
+        <script data-model="socket">
+            var ChatModel = function() {
+                this.transcript = "";
+                this.message = "";
+                this.user = "";
+
+                this.login = function() {
+                    this.$send(this.user + " logged in");
+                    avatar.navigateTo('#chat');
+                };
+                this.send = function() {
+                    this.$send(this.user + ":" + this.message);
+                    this.message = "";
+                };
+
+            };
+        </script>
+        <script data-type="ChatModel" data-instance="ch" data-url="websocket/chat"></script>
+
+        <div data-widget="view" id="login" data-title="Chat WebSocket Sample">
+            <h2>Login Page</h2>
+            <form data-widget="form" data-action="#{ch.login()}">
+                <label for="user">Username: </label>
+                <input id="user" data-value="#{ch.user}"><br>
+                <button id="loginButton">Login</button>
+            </form>
+        </div>
+
+        <div data-widget="view" id="chat" data-title="Chat WebSocket Sample">
+            <h2>Chat Room</h2>
+            <form data-widget="form" data-action="#{ch.send()}">
+                <textarea rows="5" cols="30" label="Transcript" data-value="#{ch.transcript}"></textarea>
+                <br>
+                <label for="msg">Message: </label>
+                <input id="msg" data-value="#{ch.message}"><br>
+                <button id="sendButton">Send</button>
+            </form>
+        </div>
+    </body>
+</html>
