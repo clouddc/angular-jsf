@@ -1,5 +1,5 @@
-Java EE 7 server-side application with an AngularJS front-end consisting of a chat application (
-powered by WebSocket) and a to-do list application (powered by REST). The server-side is implemented using 
+Java EE 7 server-side application with an AngularJS front-end consisting of a chat application (powered by 
+WebSocket) and a to-do list application (powered by REST). The server-side is implemented using 
 the Java API for WebSocket, JSON-P, JAX-RS 2, CDI, Bean Validation, EJB 3 and JPA.
 
 The application is secured. Before running the application, you must setup the right GlassFish security 
