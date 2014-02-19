@@ -8,11 +8,11 @@ todoControllers.controller('ToDoController', ['$scope', 'ToDo',
         $scope.newToDoDescription = '';
         $scope.itemToEdit = null;
 
-        $scope.items = ToDo.query();
+        $scope.items = ToDo.query(); // Issues a GET. See http://docs.angularjs.org/api/ngResource.$resource
 
         $scope.addItem = function() {
             var item = new ToDo({description: $scope.newToDoDescription});
-            item.$save(function(data) {
+            item.$save(function(data) { // save is from the $resource.
                 $scope.items.push(data);
             });
             $scope.newToDoDescription = '';
