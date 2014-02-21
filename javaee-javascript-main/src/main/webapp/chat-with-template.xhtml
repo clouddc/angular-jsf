@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
       ng-app="chatApplication"
       dir="#{facesContext.viewRoot.locale.language eq 'ar' ? 'rtl' : 'ltr' }">
 
-    <head>
+    <head jsf:id="head">
         <title>Chat</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width" />
@@ -36,7 +38,11 @@
     </head>
     <body ng-controller="ChatController">
         
-                <div id="chat-panel">                    
+        <ui:decorate template="templates/navbar.xhtml">      
+        
+            <ui:define name="content">
+                <div id="chat-panel">
+                    
                     <label class="chat-label">#{i18n.welcomeMessage} {{user}}</label>
 
                     <!-- AngularJS convention for directives.  In JavaScript
@@ -73,6 +79,8 @@
                         <!-- binding to ChatController.newMessage -->
                     </form>
                 </div>
+            </ui:define>
+        </ui:decorate>
     </body>
 </html>
 

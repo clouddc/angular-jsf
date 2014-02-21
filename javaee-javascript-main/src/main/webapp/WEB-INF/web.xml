@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
-    </welcome-file-list>
     <security-constraint>
         <display-name>Secure JavaScript Clients</display-name>
         <web-resource-collection>
             <web-resource-name>Secure Interfaces</web-resource-name>
             <url-pattern>/todo.jsp</url-pattern>
             <url-pattern>/chat.jsp</url-pattern>
+            <url-pattern>/faces/chat.xhtml</url-pattern>
+            <url-pattern>/faces/chat-with-template.xhtml</url-pattern>
+            <url-pattern>/faces/chat-with-skin.xhtml</url-pattern>
             <!--
             <url-pattern>/resources/todo/*</url-pattern>
             <url-pattern>/chat</url-pattern>

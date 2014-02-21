@@ -16,6 +16,19 @@
             <supported-locale>ar</supported-locale>
         </locale-config>
         
+        <!-- This element is only necessary because we want to demonstrate 
+             the non-contract-based template in the chat-with-template.xhtml
+             page.  If this element is not present, then all of the contracts
+             would automatically apply to all of the pages.  Normally that's
+             what you want, but in this case, we want the contract to 
+             only apply to one specific page. -->
+        <resource-library-contracts>
+            <contract-mapping>
+                <contracts>topNav,leftNav</contracts>
+                <url-pattern>/chat-with-skin.xhtml</url-pattern>
+            </contract-mapping>
+        </resource-library-contracts>
+        
     </application>
-
+    
 </faces-config>

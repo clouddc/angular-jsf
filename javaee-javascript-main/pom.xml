@@ -70,6 +70,12 @@
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javaee-javascript-topNav</artifactId> 
+            <!-- <artifactId>javaee-javascript-leftNav</artifactId> -->
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
