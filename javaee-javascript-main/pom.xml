@@ -72,8 +72,14 @@
         </dependency>
         <dependency>
             <groupId>org.glassfish</groupId>
-            <artifactId>javaee-javascript-topNav</artifactId> 
-            <!-- <artifactId>javaee-javascript-leftNav</artifactId> -->
+<!-- one of the following must be uncommented. --> 
+
+<!--
+            <artifactId>javaee-javascript-leftNav</artifactId>
+-->
+            <artifactId>javaee-javascript-topNav</artifactId>  
+
+
             <version>1.0</version>
         </dependency>
     </dependencies>
