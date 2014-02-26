@@ -52,8 +52,6 @@
                 
                 <!-- ng-pluralize is used to show the string "message" if
                     the count is exactly one, "messages" otherwise. -->
-
-                <!-- What about I18N?  According to Ed Giese at  -->
                 
                 <strong>{{messages.length}}</strong> <ng-pluralize count="messages.length" when="{ one: 'message', other: 'messages' }"></ng-pluralize> in chat
             </span>
